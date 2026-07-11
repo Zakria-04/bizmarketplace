@@ -1,6 +1,11 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Cairo,
+  Playpen_Sans_Hebrew,
+} from "next/font/google";
 import "./globals.css";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
@@ -8,6 +13,17 @@ import { notFound } from "next/navigation";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const playpenSansHebrew = Playpen_Sans_Hebrew({
+  variable: "--font-playpen-sans-hebrew",
+  subsets: ["hebrew"],
+});
+
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic"],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -33,12 +49,20 @@ export default async function RootLayout({
     notFound();
   }
 
+  const fontClassName =
+    locale === "ar"
+      ? cairo.className
+      : locale === "he"
+        ? playpenSansHebrew.className
+        : geistSans.className;
+
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      dir={"rtl"}
+      className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} ${playpenSansHebrew.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className={`${fontClassName} h-full bg-white text-gray-900`}>
         <NextIntlClientProvider locale={locale}>
           {children}
         </NextIntlClientProvider>

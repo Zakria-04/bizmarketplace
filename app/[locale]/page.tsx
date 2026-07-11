@@ -1,9 +1,40 @@
-import { useTranslations } from "next-intl";
-import React from "react";
+import Image from "next/image";
 
-const page = () => {
-  const t = useTranslations("LandingPage");
-  return <div>Greeting:{t("greeting")}</div>;
-};
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
 
-export default page;
+import landingPageBg from "@/assets/images/landingPageBg.png";
+import landingPageBgMobile from "@/assets/images/landingPageBgMobile.png";
+
+export default function LandingPage() {
+  return (
+    <main>
+      <section className="relative overflow-hidden">
+        {/* Desktop background */}
+        <Image
+          src={landingPageBg}
+          alt=""
+          fill
+          priority
+          aria-hidden="true"
+          className="-z-10 hidden object-cover object-center md:block"
+        />
+
+        {/* Mobile background */}
+        <Image
+          src={landingPageBgMobile}
+          alt=""
+          fill
+          priority
+          aria-hidden="true"
+          className="-z-10 object-cover object-center md:hidden"
+        />
+
+        <div className="px-3 py-4.5">
+          <Header />
+        </div>
+        <Hero />
+      </section>
+    </main>
+  );
+}
