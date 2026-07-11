@@ -13,7 +13,7 @@ export default function RenderCards({ recommendations }: RenderCardsProps) {
       {RECOMMENDATION_SECTIONS.map((section) => {
         const sectionRecommendations = recommendations.filter(
           (recommendation) =>
-            recommendation.categories.includes(section.category),
+            recommendation.tags.includes(section.category),
         );
 
         if (sectionRecommendations.length === 0) {
