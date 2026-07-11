@@ -6,6 +6,8 @@ import Hero from "@/components/Hero";
 import landingPageBg from "@/assets/images/landingPageBg.png";
 import landingPageBgMobile from "@/assets/images/landingPageBgMobile.png";
 import Categories from "@/components/Categories";
+import RenderCards from "@/components/RenderCards";
+import { demoRecommendations } from "@/assets/data/demoRecommendations";
 
 export default function LandingPage() {
   return (
@@ -19,6 +21,7 @@ export default function LandingPage() {
           priority
           aria-hidden="true"
           className="-z-10 hidden object-cover object-center md:block"
+          sizes="(min-width: 768px) 100vw, 100vw"
         />
 
         {/* Mobile background */}
@@ -29,6 +32,7 @@ export default function LandingPage() {
           priority
           aria-hidden="true"
           className="-z-10 object-cover object-center md:hidden"
+          sizes="(min-width: 768px) 100vw, 100vw"
         />
 
         <div className="px-3 py-4.5">
@@ -37,6 +41,7 @@ export default function LandingPage() {
         <Hero />
       </section>
       <Categories />
+      <RenderCards recommendations={demoRecommendations} />
     </main>
   );
 }
