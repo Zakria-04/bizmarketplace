@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 
 import landingPageBg from "@/assets/images/landingPageBg.png";
 import landingPageBgMobile from "@/assets/images/landingPageBgMobile.png";
+import Categories from "@/components/Categories";
 
 export default function LandingPage() {
   return (
@@ -35,6 +36,7 @@ export default function LandingPage() {
         </div>
         <Hero />
       </section>
+      <Categories />
     </main>
   );
 }
