@@ -2,19 +2,14 @@
 
 import { FormEvent, useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  FiEye,
-  FiEyeOff,
-  FiLock,
-  FiMail,
-  FiUser,
-} from "react-icons/fi";
+import { FiEye, FiEyeOff, FiLock, FiMail, FiUser } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 
 import AuthInput from "./AuthInput";
 import Brand from "./Brand";
+import { useAuthStore } from "@/store/authStore";
 
 export type AuthMode = "login" | "signup";
 
@@ -24,21 +19,51 @@ type AuthFormProps = {
 
 export default function AuthForm({ mode }: AuthFormProps) {
   const t = useTranslations("Auth");
+  const { register, login } = useAuthStore();
+  const router = useRouter();
 
   const isLogin = mode === "login";
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmation, setShowConfirmation] =
-    useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const values = Object.fromEntries(formData.entries());
 
-    // Connect this to your login or register API.
-    console.log(values);
+    const fullName = String(formData.get("fullName") ?? "").trim();
+    const confirmPassword = String(formData.get("confirmPassword") ?? "");
+    const email = String(formData.get("email") ?? "").trim();
+    const password = String(formData.get("password") ?? "");
+
+    try {
+      if (isLogin) {
+        const success = await login({
+          email,
+          password,
+        });
+
+        if (success) {
+          router.replace("/dashboard");
+        }
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        return;
+      }
+
+      await register({
+        fullName,
+        email,
+        password,
+      });
+
+      router.replace("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const passwordToggle = (
@@ -46,9 +71,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
       type="button"
       onClick={() => setShowPassword((current) => !current)}
       aria-label={
-        showPassword
-          ? t("form.hidePassword")
-          : t("form.showPassword")
+        showPassword ? t("form.hidePassword") : t("form.showPassword")
       }
       className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
     >
@@ -63,13 +86,9 @@ export default function AuthForm({ mode }: AuthFormProps) {
   const confirmationToggle = (
     <button
       type="button"
-      onClick={() =>
-        setShowConfirmation((current) => !current)
-      }
+      onClick={() => setShowConfirmation((current) => !current)}
       aria-label={
-        showConfirmation
-          ? t("form.hidePassword")
-          : t("form.showPassword")
+        showConfirmation ? t("form.hidePassword") : t("form.showPassword")
       }
       className="grid size-9 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
     >
@@ -115,9 +134,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
 
           <div className="mt-7">
             <h2 className="text-2xl font-bold tracking-tight text-slate-950">
-              {isLogin
-                ? t("form.loginTitle")
-                : t("form.signupTitle")}
+              {isLogin ? t("form.loginTitle") : t("form.signupTitle")}
             </h2>
 
             <p className="mt-2 text-sm leading-6 text-slate-500">
@@ -127,10 +144,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="mt-7 space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="mt-7 space-y-5">
             {!isLogin && (
               <AuthInput
                 id="fullName"
@@ -163,9 +177,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
               label={t("form.password")}
               placeholder={t("form.passwordPlaceholder")}
               icon={FiLock}
-              autoComplete={
-                isLogin ? "current-password" : "new-password"
-              }
+              autoComplete={isLogin ? "current-password" : "new-password"}
               endElement={passwordToggle}
               required
             />
@@ -174,13 +186,9 @@ export default function AuthForm({ mode }: AuthFormProps) {
               <AuthInput
                 id="confirmPassword"
                 name="confirmPassword"
-                type={
-                  showConfirmation ? "text" : "password"
-                }
+                type={showConfirmation ? "text" : "password"}
                 label={t("form.confirmPassword")}
-                placeholder={t(
-                  "form.confirmPasswordPlaceholder",
-                )}
+                placeholder={t("form.confirmPasswordPlaceholder")}
                 icon={FiLock}
                 autoComplete="new-password"
                 endElement={confirmationToggle}
@@ -239,18 +247,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
               type="submit"
               className="h-12 w-full rounded-xl bg-linear-to-r from-teal-700 to-emerald-600 px-5 font-semibold text-white shadow-lg shadow-cyan-800/15 transition hover:brightness-105 active:scale-[0.99]"
             >
-              {isLogin
-                ? t("form.loginButton")
-                : t("form.signupButton")}
+              {isLogin ? t("form.loginButton") : t("form.signupButton")}
             </button>
           </form>
 
           <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-slate-200" />
 
-            <span className="text-sm text-slate-400">
-              {t("form.or")}
-            </span>
+            <span className="text-sm text-slate-400">{t("form.or")}</span>
 
             <div className="h-px flex-1 bg-slate-200" />
           </div>
@@ -264,16 +268,12 @@ export default function AuthForm({ mode }: AuthFormProps) {
           </button>
 
           <p className="mt-6 text-center text-sm text-slate-500">
-            {isLogin
-              ? t("form.noAccount")
-              : t("form.alreadyHaveAccount")}{" "}
+            {isLogin ? t("form.noAccount") : t("form.alreadyHaveAccount")}{" "}
             <Link
               href={isLogin ? "/auth/signup" : "/auth/login"}
               className="font-semibold text-cyan-700 transition hover:text-cyan-900"
             >
-              {isLogin
-                ? t("form.createAccount")
-                : t("form.login")}
+              {isLogin ? t("form.createAccount") : t("form.login")}
             </Link>
           </p>
         </div>

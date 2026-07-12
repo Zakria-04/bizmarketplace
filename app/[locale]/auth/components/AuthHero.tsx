@@ -35,7 +35,7 @@ export default function AuthHero() {
   const t = useTranslations("Auth");
 
   return (
-    <section className="relative hidden h-dvh overflow-hidden bg-[#022c22] lg:sticky lg:top-0 lg:flex">
+    <section className="relative hidden h-dvh overflow-hidden bg-[#022c22] lg:sticky lg:top-0 lg:flex cursor-default">
       {/* Main background */}
       <div className="absolute inset-0 bg-[linear-gradient(145deg,#022c22_0%,#065f46_55%,#d1fae5_100%)]" />
 
