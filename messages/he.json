@@ -2,6 +2,7 @@
   "LandingPage": {
     "Header": {
       "listCta": "פרסמו את השירות שלכם",
+      "signupCta": "הרשמה",
       "nav": {
         "home": "דף הבית",
         "about": "אודות",
@@ -52,6 +53,63 @@
       "sponsored": "ממומן",
       "empty": "המלצות יתווספו בקרוב.",
       "viewAll": "הצגת הכול"
+    }
+  },
+  "Auth": {
+    "hero": {
+      "title": "כל מה שהעסק שלך צריך כדי לצמוח",
+      "description": "גלו כלים, שירותים, ספקים ומומחים אמינים — הכול במקום אחד.",
+      "trusted": {
+        "title": "ספקים אמינים",
+        "description": "אנשי מקצוע ועסקים מאומתים שאפשר לסמוך עליהם."
+      },
+      "recommendations": {
+        "title": "המלצות חכמות",
+        "description": "התאמות אישיות שחוסכות לכם זמן וכסף."
+      },
+      "discovery": {
+        "title": "חיפוש פשוט",
+        "description": "מצאו במהירות את הפתרון המתאים באמצעות חיפוש וסינון."
+      },
+      "growth": {
+        "analytics": "נתונים וניתוח",
+        "title": "סקירת צמיחה",
+        "description": "חשיפת העסק",
+        "period": "30 הימים האחרונים",
+        "chartLabel": "תרשים לדוגמה המציג צמיחה עסקית"
+      }
+    },
+    "form": {
+      "login": "התחברות",
+      "signup": "הרשמה",
+      "loginTitle": "ברוכים השבים",
+      "loginDescription": "התחברו כדי להמשיך לפתח את העסק שלכם.",
+      "signupTitle": "יצירת חשבון",
+      "signupDescription": "הצטרפו ל-BizMarketplace וגלו את הפתרונות המתאימים לעסק שלכם.",
+      "fullName": "שם מלא",
+      "fullNamePlaceholder": "הזינו את השם המלא",
+      "email": "אימייל",
+      "emailPlaceholder": "הזינו את כתובת האימייל",
+      "password": "סיסמה",
+      "passwordPlaceholder": "הזינו את הסיסמה",
+      "confirmPassword": "אימות סיסמה",
+      "confirmPasswordPlaceholder": "הזינו את הסיסמה שוב",
+      "showPassword": "הצגת הסיסמה",
+      "hidePassword": "הסתרת הסיסמה",
+      "rememberMe": "זכרו אותי",
+      "forgotPassword": "שכחתם את הסיסמה?",
+      "loginButton": "התחברות",
+      "signupButton": "יצירת חשבון",
+      "or": "או",
+      "continueWithGoogle": "המשך עם Google",
+      "noAccount": "אין לכם חשבון?",
+      "alreadyHaveAccount": "כבר יש לכם חשבון?",
+      "createAccount": "צרו חשבון",
+      "agreePrefix": "אני מסכים/ה ל",
+      "terms": "תנאי השימוש",
+      "and": "ול",
+      "privacy": "מדיניות הפרטיות",
+      "security": "המידע שלכם מאובטח ומוצפן"
     }
   }
 }

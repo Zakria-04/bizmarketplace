@@ -19,10 +19,10 @@ export default function RecommendationCard({
       className="group block h-full overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-200 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative flex h-36 items-center justify-center bg-gray-50">
-        {recommendation.logoUrl ? (
+        {recommendation.coverImage ? (
           <Image
-            src={recommendation.logoUrl}
-            alt={`${recommendation.name} logo`}
+            src={recommendation.coverImage}
+            alt={`${recommendation.name} cover image`}
             fill
             sizes="(min-width: 1280px) 280px, 300px"
             className="object-contain p-8"

@@ -84,11 +84,20 @@ export default function Header() {
         <div className="flex items-center gap-25">
           <div className="flex items-center gap-4">
             <Link
-              href="/"
+              href="/auth/login"
               className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 hover:scale-105 active:scale-95 transition"
             >
               {t("listCta")}
             </Link>
+
+            <Link href="/auth/signup">
+              <div className="text-gray-800 hover:text-teal-600 transition text-sm">
+                {t("signupCta")}
+              </div>
+            </Link>
+
+            {/* Line Divider */}
+            <div className="h-6 w-px bg-gray-300" />
 
             <select
               value={locale}

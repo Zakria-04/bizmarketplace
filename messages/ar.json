@@ -2,6 +2,7 @@
   "LandingPage": {
     "Header": {
       "listCta": "أضف خدمتك",
+      "signupCta": "إنشاء حساب",
       "nav": {
         "home": "الصفحة الرئيسية",
         "about": "من نحن",
@@ -52,6 +53,63 @@
       "sponsored": "إعلان ممول",
       "empty": "ستتم إضافة التوصيات قريبًا.",
       "viewAll": "عرض الكل"
+    }
+  },
+  "Auth": {
+    "hero": {
+      "title": "كل ما يحتاجه عملك للنمو",
+      "description": "اكتشف أدوات وخدمات ومورّدين وخبراء موثوقين، كل ذلك في مكان واحد.",
+      "trusted": {
+        "title": "مزودون موثوقون",
+        "description": "محترفون وأعمال موثّقة يمكنك الاعتماد عليها."
+      },
+      "recommendations": {
+        "title": "توصيات ذكية",
+        "description": "اقتراحات مخصصة تساعدك على توفير الوقت والمال."
+      },
+      "discovery": {
+        "title": "اكتشاف سهل",
+        "description": "اعثر بسرعة على الحل المناسب باستخدام البحث والفلاتر."
+      },
+      "growth": {
+        "analytics": "التحليلات",
+        "title": "نظرة عامة على النمو",
+        "description": "ظهور النشاط التجاري",
+        "period": "آخر 30 يومًا",
+        "chartLabel": "رسم توضيحي لنمو النشاط التجاري"
+      }
+    },
+    "form": {
+      "login": "تسجيل الدخول",
+      "signup": "إنشاء حساب",
+      "loginTitle": "مرحبًا بعودتك",
+      "loginDescription": "سجّل الدخول لمواصلة تطوير عملك.",
+      "signupTitle": "أنشئ حسابك",
+      "signupDescription": "انضم إلى BizMarketplace واكتشف الحلول المناسبة لعملك.",
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "أدخل اسمك الكامل",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "confirmPasswordPlaceholder": "أدخل كلمة المرور مرة أخرى",
+      "showPassword": "إظهار كلمة المرور",
+      "hidePassword": "إخفاء كلمة المرور",
+      "rememberMe": "تذكرني",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "loginButton": "تسجيل الدخول",
+      "signupButton": "إنشاء حساب",
+      "or": "أو",
+      "continueWithGoogle": "المتابعة باستخدام Google",
+      "noAccount": "ليس لديك حساب؟",
+      "alreadyHaveAccount": "لديك حساب بالفعل؟",
+      "createAccount": "أنشئ حسابًا",
+      "agreePrefix": "أوافق على",
+      "terms": "شروط الاستخدام",
+      "and": "و",
+      "privacy": "سياسة الخصوصية",
+      "security": "بياناتك آمنة ومشفّرة"
     }
   }
 }
