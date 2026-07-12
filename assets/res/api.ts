@@ -1,57 +1,103 @@
-import { LoginRegisterPayload } from "@/types/auth";
-import axios, { AxiosError } from "axios";
+import type { LoginRegisterPayload } from "@/types/auth";
+import axios from "axios";
 
-const MainDomain = "http://localhost:8080";
+const MAIN_DOMAIN = "http://localhost:8080";
 
 const API_BASE = "/api";
 const AUTH_API = `${API_BASE}/auth`;
 
-//* Auth - User API calls //
-const loginAPI = (body: LoginRegisterPayload) => {
-  const route = `${AUTH_API}/login`;
-  return appFetch(route, "POST", body);
+type AuthResponse = {
+  success: boolean;
+  message: string;
 };
 
-// Axios instance for API calls //
+type ApiErrorResponse = {
+  message?: string;
+  errorCode?: string;
+};
+
+export class ApiError extends Error {
+  errorCode: string;
+
+  constructor(message: string, errorCode: string) {
+    super(message);
+
+    this.name = "ApiError";
+    this.errorCode = errorCode;
+  }
+}
+
 const api = axios.create({
-  baseURL: MainDomain,
+  baseURL: MAIN_DOMAIN,
   withCredentials: true,
 });
 
-const appFetch = async (
+function createApiError(error: unknown) {
+  if (axios.isAxiosError<ApiErrorResponse>(error)) {
+    return new ApiError(
+      error.response?.data?.message ?? "Something went wrong",
+      error.response?.data?.errorCode ?? "UNKNOWN_ERROR",
+    );
+  }
+
+  return new ApiError(
+    error instanceof Error ? error.message : "Something went wrong",
+    "UNKNOWN_ERROR",
+  );
+}
+
+const appFetch = async <T>(
   route: string,
   method: "GET" | "POST",
   body?: unknown,
-) => {
+): Promise<T> => {
   try {
     const response = await api({
       method,
       url: route,
       data: method !== "GET" ? body : undefined,
     });
-    return response.data;
-  } catch (error) {
-    const axiosError = error as AxiosError;
-    // try to refresh token if 401 error
-    if (axiosError.response?.status === 401) {
-      try {
-        await api.post(`${AUTH_API}/refresh`, undefined, {
-          withCredentials: true,
-        });
 
-        // retry the original request after refreshing the token
-        const response = await api({
-          method,
-          url: route,
-          data: method !== "GET" ? body : undefined,
-        });
-        return response.data;
-      } catch (error) {
-        // if refresh fails redirect to login page
+    return response.data as T;
+  } catch (error) {
+    const isAuthRoute = [
+      `${AUTH_API}/login`,
+      `${AUTH_API}/register`,
+      `${AUTH_API}/refresh`,
+    ].includes(route);
+
+    const shouldRefresh =
+      axios.isAxiosError(error) &&
+      error.response?.status === 401 &&
+      !isAuthRoute;
+
+    if (!shouldRefresh) {
+      throw createApiError(error);
+    }
+
+    try {
+      await api.post(`${AUTH_API}/refresh`);
+    } catch (refreshError) {
+      if (typeof window !== "undefined") {
         window.location.href = "/auth/login";
       }
+
+      throw createApiError(refreshError);
     }
+
+    // Retry the original request after refreshing the token.
+    const response = await api({
+      method,
+      url: route,
+      data: method !== "GET" ? body : undefined,
+    });
+
+    return response.data as T;
   }
+};
+
+const loginAPI = (body: LoginRegisterPayload) => {
+  return appFetch<AuthResponse>(`${AUTH_API}/login`, "POST", body);
 };
 
 export { loginAPI };

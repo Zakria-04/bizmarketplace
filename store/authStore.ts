@@ -1,26 +1,33 @@
-import { loginAPI } from "@/assets/res/api";
+import { ApiError, loginAPI } from "@/assets/res/api";
 import { AuthStoreType } from "@/types/auth";
 import { create } from "zustand";
 
 export const useAuthStore = create<AuthStoreType>((set) => ({
   user: null,
   isLoading: false,
-  error: null,
+  errorCode: null,
 
   // functions
   register: async (body) => {},
   login: async (body) => {
-    set({ isLoading: true, error: null });
+    set({
+      isLoading: true,
+      errorCode: null,
+    });
+
     try {
       const response = await loginAPI(body);
-      set({ user: response.user, isLoading: false });
+
       return response.success;
     } catch (error) {
-      const errMessage =
-        error instanceof Error ? error.message : "An unknown error occurred";
-      console.error("error logging in:", errMessage);
+      set({
+        errorCode:
+          error instanceof ApiError ? error.errorCode : "UNKNOWN_ERROR",
+      });
 
-      set({ isLoading: false, error: errMessage });
+      return false;
+    } finally {
+      set({ isLoading: false });
     }
   },
 }));

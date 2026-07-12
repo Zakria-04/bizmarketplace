@@ -10,6 +10,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import AuthInput from "./AuthInput";
 import Brand from "./Brand";
 import { useAuthStore } from "@/store/authStore";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export type AuthMode = "login" | "signup";
 
@@ -19,7 +20,8 @@ type AuthFormProps = {
 
 export default function AuthForm({ mode }: AuthFormProps) {
   const t = useTranslations("Auth");
-  const { register, login } = useAuthStore();
+  const tErrors = useTranslations("Errors");
+  const { register, login, errorCode, isLoading } = useAuthStore();
   const router = useRouter();
 
   const isLogin = mode === "login";
@@ -243,11 +245,27 @@ export default function AuthForm({ mode }: AuthFormProps) {
               </label>
             )}
 
+            {errorCode && (
+              <p role="alert" className="text-sm text-red-500">
+                {tErrors(errorCode)}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="h-12 w-full rounded-xl bg-linear-to-r from-teal-700 to-emerald-600 px-5 font-semibold text-white shadow-lg shadow-cyan-800/15 transition hover:brightness-105 active:scale-[0.99]"
+              disabled={isLoading}
+              className={`h-12 w-full rounded-xl bg-linear-to-r from-teal-700 to-emerald-600 px-5 font-semibold text-white shadow-lg shadow-cyan-800/15 transition hover:brightness-105 active:scale-[0.99] ${
+                isLoading ? "cursor-not-allowed" : ""
+              }`}
             >
-              {isLogin ? t("form.loginButton") : t("form.signupButton")}
+              {/* {isLogin ? t("form.loginButton") : t("form.signupButton")} */}
+              {isLoading ? (
+                <AiOutlineLoading className="animate-spin mx-auto" />
+              ) : isLogin ? (
+                t("form.loginButton")
+              ) : (
+                t("form.signupButton")
+              )}
             </button>
           </form>
 

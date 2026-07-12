@@ -14,9 +14,9 @@ export type UserType = {
 export type AuthStoreType = {
   user: UserType | null;
   isLoading: boolean;
-  error: string | null;
+  errorCode: string | null;
 
   // Functions
   register: (body: LoginRegisterPayload) => Promise<void>;
-  login: (body: LoginRegisterPayload) => Promise<{ success: boolean } | void>;
+  login: (body: LoginRegisterPayload) => Promise<boolean | void>;
 };
