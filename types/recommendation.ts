@@ -7,9 +7,10 @@ export type BusinessHelpGroup = "online-store" | "website-builder";
 export type RecommendationTag = BusinessCategory | BusinessHelpGroup;
 
 export type Recommendation = {
-  id: string;
-  name: string;
+  _id: string;
+  title: string;
   slug: string;
+  
   description: string;
   tags: RecommendationTag[];
   logo?: StaticImageData | string;

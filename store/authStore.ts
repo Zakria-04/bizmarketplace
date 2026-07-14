@@ -1,5 +1,5 @@
 import { ApiError, loginAPI } from "@/assets/res/api";
-import { AuthStoreType } from "@/types/auth";
+import { AuthStoreType } from "@/types/auth.type";
 import { create } from "zustand";
 
 export const useAuthStore = create<AuthStoreType>((set) => ({

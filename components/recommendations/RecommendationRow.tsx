@@ -11,10 +11,11 @@ import type {
 
 import CarouselControls from "./CarouselControls";
 import RecommendationCard from "./RecommendationCard";
+import { ListingType } from "@/types/listing.type";
 
 type RecommendationRowProps = {
   section: RecommendationSection;
-  recommendations: Recommendation[];
+  recommendations: ListingType[];
 };
 
 export default function RecommendationRow({
@@ -76,7 +77,7 @@ export default function RecommendationRow({
       >
         {recommendations.map((recommendation) => (
           <li
-            key={recommendation.id}
+            key={recommendation._id}
             className="w-57.5 shrink-0 snap-start sm:w-75 lg:w-[calc((100%-2rem)/4)] xl:w-[calc((100%-3rem)/5)]"
           >
             <RecommendationCard recommendation={recommendation} />

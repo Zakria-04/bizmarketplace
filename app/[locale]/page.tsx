@@ -41,7 +41,7 @@ export default function LandingPage() {
         </div>
         <Hero />
       </section>
-      <Categories />
+      {/* <Categories /> */}
       <RenderCards recommendations={demoRecommendations} />
       <BusinessHelpRecommendations recommendations={demoRecommendations} />
     </main>

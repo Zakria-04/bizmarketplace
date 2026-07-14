@@ -45,7 +45,7 @@ export default function BusinessHelpSection({
         {hasRecommendations ? (
           recommendations.map((recommendation) => (
             <RecommendationItem
-              key={recommendation.id}
+              key={recommendation._id}
               recommendation={recommendation}
               sponsoredLabel={labels.sponsored}
             />

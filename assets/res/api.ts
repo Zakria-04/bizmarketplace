@@ -1,14 +1,16 @@
-import type { LoginRegisterPayload } from "@/types/auth";
+import type { LoginRegisterPayload } from "@/types/auth.type";
 import axios from "axios";
 
 const MAIN_DOMAIN = "http://localhost:8080";
 
 const API_BASE = "/api";
 const AUTH_API = `${API_BASE}/auth`;
+const LISTS_API = `${API_BASE}/listing`;
 
 type AuthResponse = {
   success: boolean;
   message: string;
+  data?: unknown;
 };
 
 type ApiErrorResponse = {
@@ -46,11 +48,11 @@ function createApiError(error: unknown) {
   );
 }
 
-const appFetch = async <T>(
+const appFetch = async (
   route: string,
   method: "GET" | "POST",
   body?: unknown,
-): Promise<T> => {
+) => {
   try {
     const response = await api({
       method,
@@ -58,7 +60,7 @@ const appFetch = async <T>(
       data: method !== "GET" ? body : undefined,
     });
 
-    return response.data as T;
+    return response.data;
   } catch (error) {
     const isAuthRoute = [
       `${AUTH_API}/login`,
@@ -92,12 +94,22 @@ const appFetch = async <T>(
       data: method !== "GET" ? body : undefined,
     });
 
-    return response.data as T;
+    return response.data as AuthResponse;
   }
 };
 
+// Auth - User APIs
 const loginAPI = (body: LoginRegisterPayload) => {
-  return appFetch<AuthResponse>(`${AUTH_API}/login`, "POST", body);
+  return appFetch(`${AUTH_API}/login`, "POST", body);
 };
 
-export { loginAPI };
+const registerAPI = (body: LoginRegisterPayload) => {
+  return appFetch(`${AUTH_API}/register`, "POST", body);
+};
+
+// Lists APIS
+const getAllLists = () => {
+  return appFetch(`${LISTS_API}/getAllListings`, "GET");
+};
+
+export { loginAPI, registerAPI, getAllLists };
