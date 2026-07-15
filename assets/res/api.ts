@@ -1,7 +1,7 @@
 import type { LoginRegisterPayload } from "@/types/auth.type";
 import axios from "axios";
 
-const MAIN_DOMAIN = "http://localhost:8080";
+const MAIN_DOMAIN = process.env.NEXT_PUBLIC_MAIN_DOMAIN;
 
 const API_BASE = "/api";
 const AUTH_API = `${API_BASE}/auth`;
