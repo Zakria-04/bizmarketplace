@@ -7,6 +7,7 @@ import ListingStatusBadge, { type ApprovalStatus } from "./ListingStatusBadge";
 
 type ListingCardProps = {
   listing: {
+    _id: string;
     title: string;
     approvalStatus: ApprovalStatus;
   };
@@ -32,7 +33,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
 
         <div className="flex shrink-0 flex-wrap gap-2">
           <Link
-            href="/dashboard/listing/edit"
+            href={`/dashboard/listing/${listing._id}/edit`}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
           >
             <FiEdit3 />

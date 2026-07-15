@@ -50,7 +50,7 @@ function createApiError(error: unknown) {
 
 const appFetch = async (
   route: string,
-  method: "GET" | "POST",
+  method: "GET" | "POST" | "PATCH" | "DELETE",
   body?: unknown,
 ) => {
   try {
@@ -116,4 +116,19 @@ const getUserListings = () => {
   return appFetch(`${LISTS_API}/getUserListings`, "GET");
 };
 
-export { loginAPI, registerAPI, getAllLists, getUserListings };
+const createNewListing = (body: FormData) => {
+  return appFetch(`${LISTS_API}/createNewListing`, "POST", body);
+};
+
+const updateListingAPI = (listingId: string, body: FormData) => {
+  return appFetch(`${LISTS_API}/updateListing/${listingId}`, "PATCH", body);
+};
+
+export {
+  loginAPI,
+  registerAPI,
+  getAllLists,
+  getUserListings,
+  createNewListing,
+  updateListingAPI,
+};

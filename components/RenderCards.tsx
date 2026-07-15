@@ -12,8 +12,6 @@ type RenderCardsProps = {
 
 export default function RenderCards({ recommendations }: RenderCardsProps) {
   const { listings, getAllListings } = useListingStore();
-  console.log("listings", listings);
-  console.log("recommendations", recommendations);
 
   // Fetch listings when the component mounts
   useEffect(() => {
@@ -23,8 +21,8 @@ export default function RenderCards({ recommendations }: RenderCardsProps) {
   return (
     <div className="mx-auto max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
       {RECOMMENDATION_SECTIONS.map((section) => {
-        const sectionRecommendations = listings.filter(
-          (recommendation) => recommendation.tags.includes(section.category),
+        const sectionRecommendations = listings.filter((recommendation) =>
+          recommendation.tags.includes(section.category),
         );
 
         if (sectionRecommendations.length === 0) {

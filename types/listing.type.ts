@@ -34,4 +34,6 @@ export type ListingStoreType = {
   // Functions
   getAllListings: () => Promise<void>;
   getUserListings: () => Promise<void>;
+  createNewListing: (listingData: FormData) => Promise<void>;
+  updateListing: (listingId: string, listingData: FormData) => Promise<boolean>;
 };
