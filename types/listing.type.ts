@@ -29,7 +29,9 @@ export type ListingStoreType = {
   isLoading: boolean;
   errorCode: string | null;
   listings: ListingType[];
+  userListings: ListingType[];
 
   // Functions
   getAllListings: () => Promise<void>;
+  getUserListings: () => Promise<void>;
 };

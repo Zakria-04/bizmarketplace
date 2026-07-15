@@ -22,7 +22,8 @@ export default function RecommendationCard({
             alt={`${recommendation.title} cover image`}
             fill
             sizes="(min-width: 1280px) 280px, 300px"
-            className="object-contain p-8"
+            className="object-cover transition duration-200 group-hover:scale-105 rounded-t-2xl"
+            priority
           />
         ) : (
           <span className="flex size-16 items-center justify-center rounded-2xl bg-emerald-100 text-2xl font-bold text-emerald-700">

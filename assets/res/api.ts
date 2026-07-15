@@ -112,4 +112,8 @@ const getAllLists = () => {
   return appFetch(`${LISTS_API}/getAllListings`, "GET");
 };
 
-export { loginAPI, registerAPI, getAllLists };
+const getUserListings = () => {
+  return appFetch(`${LISTS_API}/getUserListings`, "GET");
+};
+
+export { loginAPI, registerAPI, getAllLists, getUserListings };
