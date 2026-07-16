@@ -12,13 +12,23 @@ export const RECOMMENDATION_SECTIONS: RecommendationSection[] = [
     titleKey: "retail",
   },
   {
-    category: "beauty",
-    slug: "beauty-wellness",
-    titleKey: "beauty",
-  },
-  {
     category: "services",
     slug: "professional-services",
     titleKey: "services",
+  },
+  {
+    category: "marketing",
+    slug: "marketing-branding",
+    titleKey: "marketing",
+  },
+  {
+    category: "suppliers",
+    slug: "suppliers-equipment",
+    titleKey: "suppliers",
+  },
+  {
+    category: "printing",
+    slug: "printing-packaging",
+    titleKey: "printing",
   },
 ];

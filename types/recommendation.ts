@@ -1,6 +1,12 @@
 import type { StaticImageData } from "next/image";
 
-export type BusinessCategory = "restaurants" | "retail" | "beauty" | "services";
+export type BusinessCategory =
+  | "restaurants"
+  | "retail"
+  | "services"
+  | "marketing"
+  | "suppliers"
+  | "printing";
 
 export type BusinessHelpGroup = "online-store" | "website-builder";
 
