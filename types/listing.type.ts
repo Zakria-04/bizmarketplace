@@ -2,7 +2,7 @@ export type ListingPrimaryCta =
   | "website"
   | "whatsapp"
   | "instagram"
-  | "facebook";
+  | "facebook"
 
 export type ListingType = {
   _id: string;

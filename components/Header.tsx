@@ -22,10 +22,10 @@ const NAVIGATION_LINKS = [
     translationKey: "services",
     href: "/services",
   },
-  {
-    translationKey: "contact",
-    href: "/contact",
-  },
+  // {
+  //   translationKey: "contact",
+  //   href: "/contact",
+  // },
 ] as const;
 
 const LANGUAGES: Array<{

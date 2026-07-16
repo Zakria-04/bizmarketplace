@@ -17,7 +17,7 @@ import { useRouter } from "@/i18n/navigation";
 import { useListingStore } from "@/store/listingStore";
 import type { ListingPrimaryCta, ListingType } from "@/types/listing.type";
 
-const tagOptions = ["restaurants", "retail", "beauty", "services"] as const;
+const tagOptions = ["restaurants", "retail", "beauty", "services", "website-builder", "online-store"] as const;
 
 const primaryCtaOptions: ListingPrimaryCta[] = [
   "website",

@@ -8,18 +8,15 @@ import BusinessHelpSection, {
   type BusinessHelpSectionData,
 } from "./business-help/BusinessHelpSection";
 
-import type { BusinessHelpGroup, Recommendation } from "@/types/recommendation";
+import type { BusinessHelpGroup } from "@/types/recommendation";
+import { useListingStore } from "@/store/listingStore";
+import { ListingType } from "@/types/listing.type";
 
-const MAX_VISIBLE_RECOMMENDATIONS = 3;
+const MAX_VISIBLE_RECOMMENDATIONS = 5;
 
-type BusinessHelpRecommendationsProps = {
-  recommendations: Recommendation[];
-};
-
-export default function BusinessHelpRecommendations({
-  recommendations,
-}: BusinessHelpRecommendationsProps) {
+export default function BusinessHelpRecommendations() {
   const t = useTranslations("LandingPage.BusinessHelp");
+  const { listings } = useListingStore();
 
   const sections: BusinessHelpSectionData[] = [
     {
@@ -37,7 +34,7 @@ export default function BusinessHelpRecommendations({
   ];
 
   const getRecommendationsByGroup = (group: BusinessHelpGroup) =>
-    recommendations
+    listings
       .filter((recommendation) => recommendation.tags.includes(group))
       .slice(0, MAX_VISIBLE_RECOMMENDATIONS);
 

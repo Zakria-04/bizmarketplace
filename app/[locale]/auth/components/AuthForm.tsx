@@ -269,7 +269,8 @@ export default function AuthForm({ mode }: AuthFormProps) {
             </button>
           </form>
 
-          <div className="my-6 flex items-center gap-4">
+          {/* GOOGLE AUTH */}
+          {/* <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-slate-200" />
 
             <span className="text-sm text-slate-400">{t("form.or")}</span>
@@ -283,7 +284,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           >
             <FcGoogle className="size-5" />
             <span>{t("form.continueWithGoogle")}</span>
-          </button>
+          </button> */}
 
           <p className="mt-6 text-center text-sm text-slate-500">
             {isLogin ? t("form.noAccount") : t("form.alreadyHaveAccount")}{" "}

@@ -4,10 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
 import { useHorizontalCarousel } from "@/hooks/useHorizontalCarousel";
-import type {
-  Recommendation,
-  RecommendationSection,
-} from "@/types/recommendation";
+import type { RecommendationSection } from "@/types/recommendation";
 
 import CarouselControls from "./CarouselControls";
 import RecommendationCard from "./RecommendationCard";
@@ -49,12 +46,12 @@ export default function RecommendationRow({
         </div>
 
         <div className="flex shrink-0 items-center gap-3">
-          <Link
+          {/* <Link
             href={`/categories/${section.slug}`}
             className="text-sm font-semibold text-emerald-600 hover:text-emerald-700"
           >
             {t("viewAll")}
-          </Link>
+          </Link> */}
 
           {hasOverflow && (
             <CarouselControls

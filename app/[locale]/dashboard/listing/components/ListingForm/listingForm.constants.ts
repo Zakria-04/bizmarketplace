@@ -5,10 +5,11 @@ export const LISTING_TAG_OPTIONS = [
   "retail",
   "beauty",
   "services",
+  "website-builder",
+  "online-store",
 ] as const;
 
-export type ListingTag =
-  (typeof LISTING_TAG_OPTIONS)[number];
+export type ListingTag = (typeof LISTING_TAG_OPTIONS)[number];
 
 export const PRIMARY_CTA_OPTIONS = [
   "website",

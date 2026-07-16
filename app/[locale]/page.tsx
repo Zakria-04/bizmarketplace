@@ -7,7 +7,6 @@ import landingPageBg from "@/assets/images/landingPageBg.png";
 import landingPageBgMobile from "@/assets/images/landingPageBgMobile.png";
 import Categories from "@/components/Categories";
 import RenderCards from "@/components/RenderCards";
-import { demoRecommendations } from "@/assets/data/demoRecommendations";
 import BusinessHelpRecommendations from "@/components/BusinessHelpRecommendations";
 
 export default function LandingPage() {
@@ -42,8 +41,8 @@ export default function LandingPage() {
         <Hero />
       </section>
       {/* <Categories /> */}
-      <RenderCards recommendations={demoRecommendations} />
-      <BusinessHelpRecommendations recommendations={demoRecommendations} />
+      <RenderCards  />
+      <BusinessHelpRecommendations  />
     </main>
   );
 }

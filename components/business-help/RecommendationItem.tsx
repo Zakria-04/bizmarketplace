@@ -1,10 +1,11 @@
 import Image, { StaticImageData } from "next/image";
 
 import { Link } from "@/i18n/navigation";
-import type { Recommendation } from "@/types/recommendation";
+// import type { Recommendation } from "@/types/recommendation";
+import { ListingType } from "@/types/listing.type";
 
 type RecommendationItemProps = {
-  recommendation: Recommendation;
+  recommendation: ListingType;
   sponsoredLabel: string;
 };
 
@@ -12,14 +13,21 @@ export default function RecommendationItem({
   recommendation,
   sponsoredLabel,
 }: RecommendationItemProps) {
-  const { title, slug, description, logo, sponsored } = recommendation;
+  const { title, description, images, sponsored, links, primaryCta } = recommendation;
+
+  if (!primaryCta) return null;
+
+  const href = links[primaryCta];
+
+  if (!href) return null;
 
   return (
     <Link
-      href={`/recommendations/${slug}`}
+      href={href}
       className="flex items-center gap-4 py-5 transition hover:bg-white sm:px-3"
+      target="_blank"
     >
-      <RecommendationLogo name={title} logo={logo} />
+      <RecommendationLogo name={title} logo={images?.[0].url} />
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">

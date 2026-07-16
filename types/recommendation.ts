@@ -6,18 +6,6 @@ export type BusinessHelpGroup = "online-store" | "website-builder";
 
 export type RecommendationTag = BusinessCategory | BusinessHelpGroup;
 
-export type Recommendation = {
-  _id: string;
-  title: string;
-  slug: string;
-  
-  description: string;
-  tags: RecommendationTag[];
-  logo?: StaticImageData | string;
-  coverImage?: StaticImageData | string ;
-  sponsored?: boolean;
-};
-
 export type RecommendationSection = {
   category: BusinessCategory;
   slug: string;

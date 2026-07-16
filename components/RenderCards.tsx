@@ -1,16 +1,14 @@
 "use client";
 import { RECOMMENDATION_SECTIONS } from "@/assets/data/recommendationSections";
-import type { Recommendation } from "@/types/recommendation";
 
 import RecommendationRow from "./recommendations/RecommendationRow";
 import { useListingStore } from "@/store/listingStore";
 import { useEffect } from "react";
+import { ListingType } from "@/types/listing.type";
 
-type RenderCardsProps = {
-  recommendations: Recommendation[];
-};
 
-export default function RenderCards({ recommendations }: RenderCardsProps) {
+
+export default function RenderCards() {
   const { listings, getAllListings } = useListingStore();
 
   // Fetch listings when the component mounts

@@ -1,9 +1,10 @@
 import { FaArrowRight } from "react-icons/fa";
 
 import { Link } from "@/i18n/navigation";
-import type { BusinessHelpGroup, Recommendation } from "@/types/recommendation";
+import type { BusinessHelpGroup } from "@/types/recommendation";
 
 import RecommendationItem from "./RecommendationItem";
+import { ListingType } from "@/types/listing.type";
 
 export type BusinessHelpSectionData = {
   key: BusinessHelpGroup;
@@ -20,7 +21,7 @@ type BusinessHelpSectionLabels = {
 
 type BusinessHelpSectionProps = {
   section: BusinessHelpSectionData;
-  recommendations: Recommendation[];
+  recommendations: ListingType[];
   labels: BusinessHelpSectionLabels;
 };
 
