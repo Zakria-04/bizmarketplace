@@ -1,4 +1,5 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import {
   Geist,
@@ -65,6 +66,7 @@ export default async function RootLayout({
       <body className={`${fontClassName} h-full bg-white text-gray-900`}>
         <NextIntlClientProvider locale={locale}>
           {children}
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -17,6 +17,6 @@ export type AuthStoreType = {
   errorCode: string | null;
 
   // Functions
-  register: (body: LoginRegisterPayload) => Promise<void>;
+  register: (body: LoginRegisterPayload) => Promise<boolean | void>;
   login: (body: LoginRegisterPayload) => Promise<boolean | void>;
 };

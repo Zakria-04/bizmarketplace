@@ -52,17 +52,19 @@ export default function AuthForm({ mode }: AuthFormProps) {
         return;
       }
 
-      if (password !== confirmPassword) {
-        return;
-      }
+      // if (password !== confirmPassword) {
+      //   return;
+      // }
 
-      await register({
+      const success = await register({
         fullName,
         email,
         password,
       });
 
-      router.replace("/dashboard");
+      if (success) {
+        router.replace("/dashboard");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -184,7 +186,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
               required
             />
 
-            {!isLogin && (
+            {/* {!isLogin && (
               <AuthInput
                 id="confirmPassword"
                 name="confirmPassword"
@@ -196,7 +198,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
                 endElement={confirmationToggle}
                 required
               />
-            )}
+            )} */}
 
             {isLogin ? (
               <div className="flex items-center justify-between gap-4 text-sm">

@@ -117,7 +117,7 @@ export default function Header() {
             </select>
           </div>
 
-          <nav aria-label="Main navigation">
+          {/* <nav aria-label="Main navigation">
             <ul className="flex items-center gap-6">
               {NAVIGATION_LINKS.map((link) => (
                 <li key={link.href}>
@@ -130,7 +130,7 @@ export default function Header() {
                 </li>
               ))}
             </ul>
-          </nav>
+          </nav> */}
         </div>
       </div>
     </header>
