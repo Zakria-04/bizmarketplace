@@ -21,14 +21,14 @@ export default function Hero() {
         </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Link href="/">
+          <Link href="/auth/signup">
             <div className="rounded-xl bg-emerald-600 px-6 py-3 text-sm font-medium text-white hover:bg-emerald-700 hover:scale-105 active:scale-95 transition">
-              {t("exploreCta")}
+              {t("signupCta")}
             </div>
           </Link>
 
           <Link
-            href="/"
+            href="/auth/login"
             className="rounded-xl border border-emerald-600 bg-white/60 px-6 py-3 text-sm font-medium text-emerald-600  hover:bg-white/80 hover:scale-105 active:scale-95 transition"
           >
             {t("listCta")}
