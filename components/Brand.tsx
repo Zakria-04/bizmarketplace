@@ -1,24 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import logo from "@/assets/images/logo.png";
 
 const Brand = () => {
   return (
     <Link
       href="/"
-      aria-label="BizMarketplace homepage"
-      className="flex items-center gap-2"
+      aria-label="מעבר לדף הבית של EsekPlus"
+      className="inline-flex flex-col items-start"
     >
-      <h1 className="text-sm font-semibold text-gray-800 sm:text-base lg:text-lg">
-        BizMarketplace
-      </h1>
+      <Image src={logo} alt="EsekPlus logo" priority className="w-40" />
 
-      <Image
-        src={logo}
-        alt="BizMarketplace logo"
-        priority
-        className="size-11 object-contain sm:size-12"
-      />
+      <p
+        className="mt-1 text-xs font-medium text-slate-500"
+        style={{ fontFamily: "var(--font-hebrew)" }}
+      >
+        הדרך של העסק שלך לצמוח
+      </p>
     </Link>
   );
 };

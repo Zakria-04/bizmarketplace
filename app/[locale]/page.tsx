@@ -20,29 +20,18 @@ export default function LandingPage() {
           fill
           priority
           aria-hidden="true"
-          className="-z-10 hidden object-cover object-center md:block"
+          className="-z-10 object-cover object-right md:object-center"
           sizes="(min-width: 768px) 100vw, 100vw"
         />
 
-        {/* Mobile background */}
-        <Image
-          src={landingPageBgMobile}
-          alt=""
-          fill
-          priority
-          aria-hidden="true"
-          className="-z-10 object-cover object-center md:hidden"
-          sizes="(min-width: 768px) 100vw, 100vw"
-        />
-
-        <div className="px-3 py-4.5">
+        <div className="px-2 py-1 lg:px-3 lg:py-4.5">
           <Header />
         </div>
         <Hero />
       </section>
       {/* <Categories /> */}
-      <RenderCards  />
-      <BusinessHelpRecommendations  />
+      <RenderCards />
+      {/* <BusinessHelpRecommendations  /> */}
     </main>
   );
 }

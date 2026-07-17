@@ -1,40 +1,43 @@
 "use client";
+
+import { useEffect } from "react";
+
 import { RECOMMENDATION_SECTIONS } from "@/assets/data/recommendationSections";
+import { useListingStore } from "@/store/listingStore";
 
 import RecommendationRow from "./recommendations/RecommendationRow";
-import { useListingStore } from "@/store/listingStore";
-import { useEffect } from "react";
-import { ListingType } from "@/types/listing.type";
-
-
+import RecommendationsSkeleton from "./recommendations/RecommendationsSkeleton";
 
 export default function RenderCards() {
-  const { listings, getAllListings } = useListingStore();
+  const { listings, isLoading, getAllListings } = useListingStore();
 
-  // Fetch listings when the component mounts
   useEffect(() => {
     getAllListings();
   }, [getAllListings]);
 
   return (
     <div className="mx-auto max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
-      {RECOMMENDATION_SECTIONS.map((section) => {
-        const sectionRecommendations = listings.filter((recommendation) =>
-          recommendation.tags.includes(section.category),
-        );
+      {isLoading ? (
+        <RecommendationsSkeleton />
+      ) : (
+        RECOMMENDATION_SECTIONS.map((section) => {
+          const sectionRecommendations = listings.filter((listing) =>
+            listing.tags.includes(section.category),
+          );
 
-        if (sectionRecommendations.length === 0) {
-          return null;
-        }
+          if (sectionRecommendations.length === 0) {
+            return null;
+          }
 
-        return (
-          <RecommendationRow
-            key={section.category}
-            section={section}
-            recommendations={sectionRecommendations}
-          />
-        );
-      })}
+          return (
+            <RecommendationRow
+              key={section.category}
+              section={section}
+              recommendations={sectionRecommendations}
+            />
+          );
+        })
+      )}
     </div>
   );
 }

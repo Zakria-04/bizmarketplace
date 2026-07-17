@@ -63,7 +63,7 @@ export default function Header() {
   return (
     <header>
       {/* Mobile header */}
-      <div className="rounded-3xl border border-gray-200/50 bg-white/30 shadow-sm backdrop-blur-sm lg:hidden">
+      {/* <div className="rounded-3xl border border-gray-200/50 bg-white/30 shadow-sm backdrop-blur-sm lg:hidden">
         <div className="mx-auto flex h-13 max-w-7xl items-center justify-between px-4 sm:h-18 sm:px-6">
           <button
             type="button"
@@ -75,7 +75,7 @@ export default function Header() {
 
           <Brand />
         </div>
-      </div>
+      </div> */}
 
       {/* Desktop header */}
       <div className="hidden items-center justify-between lg:flex flex-row-reverse">
