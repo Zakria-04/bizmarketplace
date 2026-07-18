@@ -63,6 +63,24 @@ export default function Header() {
   return (
     <header>
       {/* Mobile header */}
+      <div className="lg:hidden">
+        <select
+          value={locale}
+          onChange={handleLocaleChange}
+          aria-label="Select language"
+          className="bg-transparent px-3 py-2 text-sm text-gray-700 outline-none cursor-pointer"
+        >
+          {LANGUAGES.map((language) => (
+            <option
+              key={language.value}
+              value={language.value}
+              style={{ fontFamily: `var(${language.fontFamily})` }}
+            >
+              {language.label}
+            </option>
+          ))}
+        </select>
+      </div>
       {/* <div className="rounded-3xl border border-gray-200/50 bg-white/30 shadow-sm backdrop-blur-sm lg:hidden">
         <div className="mx-auto flex h-13 max-w-7xl items-center justify-between px-4 sm:h-18 sm:px-6">
           <button
